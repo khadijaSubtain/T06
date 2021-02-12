@@ -5,11 +5,10 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@Path("/restaurant/customer")
+@Path("/customer")
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerRest {
 
