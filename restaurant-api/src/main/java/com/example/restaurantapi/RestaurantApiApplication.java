@@ -15,6 +15,7 @@ import javax.servlet.ServletRegistration;
 import java.util.HashMap;
 import java.util.Map;
 
+// The @EnableDiscoveryClient tag helps register the service on the Eureka registry
 @SpringBootApplication
 @EnableDiscoveryClient
 public class RestaurantApiApplication extends SpringBootServletInitializer {
@@ -27,16 +28,15 @@ public class RestaurantApiApplication extends SpringBootServletInitializer {
 	@Bean
 	public ServletContextInitializer servletInitializer() {
 		return new ServletContextInitializer() {
-
 			@Override
 			public void onStartup(ServletContext servletContext) throws ServletException {
 				final ServletRegistration.Dynamic appServlet = servletContext.addServlet("jersey-servlet", new SpringServlet());
 				Map<String, String> filterParameters = new HashMap<>();
-				// Set filter parameters
+				// Make sure the filter parameters fit with your implementation
 				filterParameters.put("javax.ws.rs.RestaurantApiApplication", "com.example.restaurantapi.DemoConfig");
 				appServlet.setInitParameters(filterParameters);
 				appServlet.setLoadOnStartup(2);
-				appServlet.addMapping("/*");
+				appServlet.addMapping("/restaurant/*");
 			}
 		};
 	}

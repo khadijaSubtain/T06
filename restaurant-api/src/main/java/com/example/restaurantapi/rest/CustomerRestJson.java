@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Component
-@Path("/restaurant/customerjson")
+@Path("/customerjson")
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerRestJson {
 

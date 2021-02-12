@@ -7,7 +7,7 @@ import javax.ws.rs.ApplicationPath;
 import java.util.HashMap;
 import java.util.Map;
 
-@ApplicationPath("/restaurant")
+@ApplicationPath("/")
 public class DemoConfig extends PackagesResourceConfig {
     private static final Map<String, Object> properties() {
         Map<String, Object> result = new HashMap<>();

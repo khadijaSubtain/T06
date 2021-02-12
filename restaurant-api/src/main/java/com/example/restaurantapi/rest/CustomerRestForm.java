@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @Component
-@Path("/restaurant/customerform")
+@Path("/customerform")
 @Produces(MediaType.APPLICATION_JSON)
 public class CustomerRestForm {
     /**
@@ -28,31 +28,16 @@ public class CustomerRestForm {
         return customers;
     }
 
-//    /**
-//     * Meant for getting a customer with a specific ID
-//     * @param id of the customer
-//     * @return toString method of customer
-//     */
-//    @GET
-//    @Path("{id}")
-//    @Produces("application/xml")
-//    public Customer getCustomerList(@PathParam("id") int id) {
-//        Customer customer = customers.stream().filter(customer1 -> customer1.getId() == id)
-//                .findFirst()
-//                .orElse(null);
-//        return customer;
-//    }
-
     /**
-     * Meant for getting a customer with a specific Name
-     * @param name of the customer
+     * Meant for getting a customer with a specific ID
+     * @param id of the customer
      * @return toString method of customer
      */
     @GET
-    @Path("{name}")
+    @Path("{id}")
     @Produces("application/xml")
-    public Customer getCustomerList(@PathParam("name") String name) {
-        Customer customer = customers.stream().filter(customer1 -> customer1.getName().equals(name))
+    public Customer getCustomerList(@PathParam("id") int id) {
+        Customer customer = customers.stream().filter(customer1 -> customer1.getId() == id)
                 .findFirst()
                 .orElse(null);
         return customer;
