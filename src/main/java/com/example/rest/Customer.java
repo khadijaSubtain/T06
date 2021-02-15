@@ -1,4 +1,4 @@
-package com.example.restaurantapi.rest;
+package com.example.rest;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

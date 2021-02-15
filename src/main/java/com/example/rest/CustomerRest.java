@@ -1,17 +1,11 @@
-package com.example.restaurantapi.rest;
-
-import org.springframework.stereotype.Component;
+package com.example.rest;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@Component
-@Path("/customer")
-@Produces(MediaType.APPLICATION_JSON)
+@Path("customer")
 public class CustomerRest {
-
 
     /**
      * Class for holding the list of customers and handling the requests

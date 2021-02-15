@@ -1,17 +1,11 @@
-package com.example.restaurantapi.rest;
-
-import org.springframework.stereotype.Component;
+package com.example.rest;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@Component
-@Path("/customerjson")
-@Produces(MediaType.APPLICATION_JSON)
-public class CustomerRestJson {
-
+@Path("/customerform")
+public class CustomerRestForm {
     /**
      * Class for holding the list of customers and handling the requests
      */
@@ -23,7 +17,7 @@ public class CustomerRestJson {
      * @return A concatenation of the toString method for all customers
      */
     @GET
-    @Produces("application/json")
+    @Produces("application/xml")
     public ArrayList<Customer> getCustomer() {
         return customers;
     }
@@ -35,7 +29,7 @@ public class CustomerRestJson {
      */
     @GET
     @Path("{id}")
-    @Produces("application/json")
+    @Produces("application/xml")
     public Customer getCustomerList(@PathParam("id") int id) {
         Customer customer = customers.stream().filter(customer1 -> customer1.getId() == id)
                 .findFirst()
@@ -45,26 +39,27 @@ public class CustomerRestJson {
 
     /**
      * Meant for creating customers using the post method
-     * @param customer to create
+     * @param name of the customer
+     * @param age of the customer
      */
     @POST
-    @Consumes("application/json")
-    public void createCustomer(Customer customer) {
-        Customer newCustomer = new Customer(customer);
+    public void createCustomer(@FormParam("name") String name, @FormParam("age") int age) {
+        Customer newCustomer = new Customer(name, age);
         customers.add(newCustomer);
     }
 
     /**
      * Meant for replacing customer with specific ID
      * @param id of the customer
-     * @param customer to replace with
+     * @param name of the customer
+     * @param age of the customer
      */
     @PUT
     @Path("{id}")
-    @Consumes("application/json")
-    public void modifyCustomer(@PathParam("id") int id, Customer customer) {
+    @Consumes("application/xml")
+    public void modifyCustomer(@PathParam("id") int id, @FormParam("name") String name, @FormParam("age") int age) {
         deleteCustomer(id);
-        customers.add(new Customer(customer));
+        customers.add(new Customer(name, age));
     }
 
     /**
