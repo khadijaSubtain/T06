@@ -2,6 +2,7 @@
 .idea/
 out/
 target/
+*.iml
 
 # editor, vim swap/backup files
 *.swp
