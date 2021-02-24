@@ -57,7 +57,8 @@ public class ExampleEurekaClient {
         // Create closeable http client to execute requests with
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             // Creating the request to execute
-            HttpGet httpget = new HttpGet("http://localhost:8080/restaurant/customerform");
+            String url = getServiceURL() + "/customerform";
+            HttpGet httpget = new HttpGet(url);
 
             // Executing the request using the http client and obtaining the response
             CloseableHttpResponse response = client.execute(httpget);
@@ -141,9 +142,9 @@ public class ExampleEurekaClient {
         ApplicationInfoManager applicationInfoManager = initializeApplicationInfoManager(new MyDataCenterInstanceConfig());
         EurekaClient client = initializeEurekaClient(applicationInfoManager, new DefaultEurekaClientConfig());
 
-        createCustomer("Nick", 24);
-        createCustomer("Ali", 30);
-        createCustomer("Hamed", 26);
+//        createCustomer("Nick", 24);
+//        createCustomer("Ali", 30);
+//        createCustomer("Hamed", 26);
 
         System.out.println(getCustomers());
 
