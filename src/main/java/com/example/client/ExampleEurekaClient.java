@@ -33,20 +33,17 @@ public class ExampleEurekaClient {
     private static EurekaClient eurekaClient;
     public static String vipAddress = "restaurant";
 
-    private static synchronized ApplicationInfoManager initializeApplicationInfoManager(EurekaInstanceConfig instanceConfig) {
+    private static synchronized void initializeApplicationInfoManager(EurekaInstanceConfig instanceConfig) {
         if (applicationInfoManager == null) {
             InstanceInfo instanceInfo = new EurekaConfigBasedInstanceInfoProvider(instanceConfig).get();
             applicationInfoManager = new ApplicationInfoManager(instanceConfig, instanceInfo);
         }
-
-        return applicationInfoManager;
     }
 
-    private static synchronized EurekaClient initializeEurekaClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig clientConfig) {
+    private static synchronized void initializeEurekaClient(ApplicationInfoManager applicationInfoManager, EurekaClientConfig clientConfig) {
         if (eurekaClient == null) {
             eurekaClient = new DiscoveryClient(applicationInfoManager, clientConfig);
         }
-        return eurekaClient;
     }
 
     /**
@@ -136,15 +133,13 @@ public class ExampleEurekaClient {
     }
 
     public static void main(String[] args) {
-        ExampleEurekaClient sampleClient = new ExampleEurekaClient();
+        // initialize the client
+        initializeApplicationInfoManager(new MyDataCenterInstanceConfig());
+        initializeEurekaClient(applicationInfoManager, new DefaultEurekaClientConfig());
 
-        // create the client
-        ApplicationInfoManager applicationInfoManager = initializeApplicationInfoManager(new MyDataCenterInstanceConfig());
-        EurekaClient client = initializeEurekaClient(applicationInfoManager, new DefaultEurekaClientConfig());
-
-//        createCustomer("Nick", 24);
-//        createCustomer("Ali", 30);
-//        createCustomer("Hamed", 26);
+        createCustomer("Nick", 24);
+        createCustomer("Ali", 30);
+        createCustomer("Hamed", 26);
 
         System.out.println(getCustomers());
 
