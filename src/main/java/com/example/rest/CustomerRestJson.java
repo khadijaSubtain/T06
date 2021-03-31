@@ -1,9 +1,12 @@
 package com.example.rest;
 
+import org.springframework.stereotype.Component;
+
 import javax.ws.rs.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+@Component
 @Path("customerjson")
 public class CustomerRestJson {
 

@@ -1,10 +1,13 @@
 package com.example.rest;
 
+import org.springframework.stereotype.Component;
+
 import javax.ws.rs.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-@Path("customer")
+@Component
+@Path("/customer")
 public class CustomerRest {
 
     /**
